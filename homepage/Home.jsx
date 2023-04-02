@@ -1,34 +1,48 @@
 import React, { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import MovieMadnessApi from "../api/api";
+import movieRouteFactory from "../movies/Factory";
 
 const Home = () => {
-    const [nowPlayingMovies, setNowPlayingMovies] = useState();
-    const [isLoading, setIsloading] = useState(true);
+    //const [nowPlayingMovies, setNowPlayingMovies] = useState();
+    //const [isLoading, setIsloading] = useState(true);
+    
+   const movieObj = new movieRouteFactory()
+     const [movies, isLoading, page, setPage] = movieObj.callRoute("popular")
+    
+    //console.log(movie);
 
-    useEffect(() => {
+    /* useEffect(() => {
         (async () => {
             const res = await MovieMadnessApi.getMovies("now_playing")
             setNowPlayingMovies(res.newData)
             console.log(res)
             setIsloading(false)
         })();
-    }, [])
+    }, []) */
 
-    if (isLoading) {
+   const handleClick = () =>{
+    console.log("clicked")
+    setPage(page + 1)
+   }
+
+     if (isLoading) {
         return (
             <ClipLoader/>
 
         )
-    }
+    } 
 
     return (
         <div>
             <h2>This the data</h2>
-            {nowPlayingMovies.map((m) => (
+            {movies.map((m) => (
                 <h2>{m.original_title
                 }</h2>
             ))}
+            
+
+            <button onClick={handleClick}>onc</button>
 
         </div>
     );
