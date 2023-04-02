@@ -22,10 +22,27 @@ class MovieMadnessApi {
       }
     }
 
+    static async register(userInfo) {
+        const res = await this.request("auth/register", userInfo, "post")
+        this.token = res.data.token
+        return res
+    }
+
+    static async login(userInfo) {
+        const res =  await this.request("auth/token", userInfo, "post")
+        this.token = res.data.token
+        return res
+    }
+
     static async getMovies(route, page=1) {
         const res = await this.request(`movies/${route}?page=${page}`);
         return res;
 
+    }
+
+    static async getMovie(id) {
+        const res = await this.request(`movies/${id}`)
+        return res
     }
 
     static async searchMovie(search, page=1){
