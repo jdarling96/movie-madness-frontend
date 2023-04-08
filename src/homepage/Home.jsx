@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import MovieMadnessApi from "../api/api";
-import movieRouteFactory from "../movies/Factory";
+import movieByFilter from "../hooks/movieByFilter";
 
 const Home = () => {
     //const [nowPlayingMovies, setNowPlayingMovies] = useState();
     //const [isLoading, setIsloading] = useState(true);
     
-   const movieObj = new movieRouteFactory()
+   const movieObj = new movieByFilter()
      const [movies, isLoading, page, setPage] = movieObj.callRoute("popular")
     
     //console.log(movie);

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import MovieMadnessApi from "../api/api";
-function movieRouteFactory() {
+function movieByFilter() {
   return {
     callRoute: function callRoute(route) {
       const [movies, setMovies] = useState();
@@ -27,4 +27,4 @@ function movieRouteFactory() {
   };
 };
 
-export default movieRouteFactory;
+export default movieByFilter;
